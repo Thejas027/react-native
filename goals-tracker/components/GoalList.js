@@ -1,16 +1,18 @@
 import React from "react";
-import { FlatList, View, Text, StyleSheet } from "react-native";
+import { FlatList, View, Text, StyleSheet, Pressable } from "react-native";
 
-export default function GoalList({ goals }) {
+export default function GoalList({ goals, deleteGoalItem }) {
   return (
     <FlatList
       style={styles.goalsContainer}
       data={goals}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <View style={styles.goalItem}>
-          <Text style={styles.goalText}>{item.text}</Text>
-        </View>
+        <Pressable onPress={() => deleteGoalItem(item.id)}>
+          <View style={styles.goalItem}>
+            <Text style={styles.goalText}>{item.text}</Text>
+          </View>
+        </Pressable>
       )}
     />
   );
